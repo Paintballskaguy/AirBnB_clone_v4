@@ -6,7 +6,10 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from os import environ
-from flask import Flask, render_template
+# Ariel: added cache_id
+from flask import Flask, render_template, cache_id
+# Ariel: cache id needs to have value of uuid4
+from uuid import uuid4
 app = Flask(__name__)
 # app.jinja_env.trim_blocks = True
 # app.jinja_env.lstrip_blocks = True
@@ -17,7 +20,7 @@ def close_db(error):
     """ Remove the current SQLAlchemy Session """
     storage.close()
 
-
+# Ariel: updated route from hbnb to 0-hbnb
 @app.route('/0-hbnb', strict_slashes=False)
 def hbnb():
     """ HBNB is alive! """
@@ -34,7 +37,8 @@ def hbnb():
     places = storage.all(Place).values()
     places = sorted(places, key=lambda k: k.name)
 
-    return render_template('100-hbnb.html',
+    # Ariel: updated from 100 to 0
+    return render_template('0-hbnb.html',
                            states=st_ct,
                            amenities=amenities,
                            places=places)
