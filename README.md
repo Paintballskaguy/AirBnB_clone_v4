@@ -158,6 +158,8 @@ No known bugs at this time.
 - Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)
 - John Wilson - [Github](https://github.com/Paintballskaguy) / [Email](john.wilson@atlasschool.com)
 - Donovan Heape - [Github](https://github.com/SudoSavvy) / [Email](donovan.heape@atlasschool.com)
+- Ariel Lopez [Github](https://github.com/NKN_Neko) / [Email]
+(alexandrea.lopez@atlasschool.com)
 
 Second part of Airbnb: Joann Vuong
 ## License
