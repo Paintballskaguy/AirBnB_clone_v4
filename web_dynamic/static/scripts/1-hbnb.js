@@ -1,11 +1,14 @@
 $(document).ready(function () {
-  // Dictionary to store selected amenities
+  // Create an object to store selected amenities
   const selectedAmenities = {};
 
-  // Listen for changes on input checkbox tags
-  $('input[type="checkbox"]').change(function () {
+  // Listen for changes on input checkboxes inside the amenities popover
+  $('div.amenities input[type="checkbox"]').change(function () {
     const amenityId = $(this).attr('data-id');   // Get Amenity ID
     const amenityName = $(this).attr('data-name'); // Get Amenity Name
+
+    // Debugging: Log amenityId and amenityName
+    console.log('Checkbox changed:', amenityId, amenityName);
 
     if ($(this).is(':checked')) {
       // Add the amenity to the dictionary if checked
@@ -17,6 +20,7 @@ $(document).ready(function () {
 
     // Update the h4 tag inside div.amenities with the selected amenities
     const amenitiesList = Object.values(selectedAmenities).join(', ');
-    $('span.amenities h4').text(amenitiesList || ''); // Clear text if no amenities selected
+    console.log('Updated amenities list:', amenitiesList); // Debugging: Log updated amenities
+    $('div.amenities h4').text(amenitiesList || '\xa0'); // Clear text if no amenities selected
   });
 });

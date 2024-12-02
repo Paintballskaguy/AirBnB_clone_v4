@@ -3,9 +3,11 @@
   <head>
     <meta charset="UTF-8">
 	<!-- added jquery import -->
-	<script src="jquery-3.7.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+        integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs" 
+        crossorigin="anonymous"></script>
 	<!-- Ariel:added script for javascript -->
-	<script src="static/scripts/1-hbnb.js"></script>
+	<script src="../static/scripts/1-hbnb.js?{{ cache_id }}"></script>
     <!-- Add cache busting to all asset URLs -->
     <link rel="stylesheet" type="text/css" href="../static/styles/4-common.css?{{ cache_id }}" />
     <link rel="stylesheet" type="text/css" href="../static/styles/3-header.css?{{ cache_id }}" />
