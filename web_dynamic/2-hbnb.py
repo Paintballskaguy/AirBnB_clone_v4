@@ -20,16 +20,19 @@ def close_db(error):
     storage.close()
 
 # Ariel: updated route from hbnb to 1-hbnb
-@app.route('/1-hbnb/', strict_slashes=False)
+@app.route('/2-hbnb/', strict_slashes=False)
 def hbnb():
-    """ Renders the HBNB page with dynamic filtering """
-    states = sorted(storage.all("State").values(), key=lambda state: state.name)
-    amenities = sorted(storage.all("Amenity").values(), key=lambda amenity: amenity.name)
-    places = sorted(storage.all("Place").values(), key=lambda place: place.name)
+    """ Renders the HBNB page with API status """
+    states = storage.all(State).values()
+    states = sorted(states, key=lambda k: k.name)
+    amenities = storage.all(Amenity).values()
+    amenities = sorted(amenities, key=lambda k: k.name)
+    places = storage.all(Place).values()
+    places = sorted(places, key=lambda k: k.name)
     cache_id = uuid.uuid4()
 
     return render_template(
-        '1-hbnb.html',
+        '2-hbnb.html',
         states=states,
         amenities=amenities,
         places=places,
