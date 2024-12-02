@@ -14,5 +14,6 @@ $(document).ready(function() {
     }
     // will come back to this, adding variable to show dict
     const amenityList = Object.values(amenityDict).join(', ');
+    console.log(amenityList);
   });
 });
