@@ -17,6 +17,6 @@ $(document).ready(function () {
 
     // Update the h4 tag inside div.amenities with the selected amenities
     const amenitiesList = Object.values(selectedAmenities).join(', ');
-    $('.amenities h4').text(amenitiesList || ''); // Clear text if no amenities selected
+    $('span.amenities h4').text(amenitiesList || ''); // Clear text if no amenities selected
   });
 });
