@@ -1,19 +1,23 @@
-// DOM launched
-$(document).ready(function() {
-  // create empty dictionary
+// DOM ready
+$(document).ready(function () {
+  // Create empty dictionary to store selected amenities
   const amenityDict = {};
-  // if checkbox is checked add to dictionary
-  $("#checkbox").on("input", function() {
-    if ($(this).is(":checked")) {
-        // Ariel: go back and see if this is missing something
-        // needs to store k,v to dict
-      amenityDict[$(this).attr('id')] = $(this).attr('data-name');
-    // delete amenity if not checked
+
+  // Listen for changes on input checkbox tags
+  $('input[type="checkbox"]').change(function () {
+    const amenityId = $(this).attr('data-id');   // Get Amenity ID
+    const amenityName = $(this).attr('data-name'); // Get Amenity Name
+
+    if ($(this).is(':checked')) {
+      // Add amenity to dictionary
+      amenityDict[amenityId] = amenityName;
     } else {
-        delete amenityDict[$(this).attr('id')];
+      // Remove amenity from dictionary
+      delete amenityDict[amenityId];
     }
-    // will come back to this, adding variable to show dict
-    const amenityList = Object.values(amenityDict).join(', ');
-    $('div.filters h4').text('Amenities: ') + amenityDict;
+
+    // Update the h4 tag inside div.filters
+    const amenityList = Object.values(amenityDict).join(', '); // Get selected names
+    $('div.filters h4').text(amenityList || '\xa0'); // Update h4 (non-breaking space if empty)
   });
 });
