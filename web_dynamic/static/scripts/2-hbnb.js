@@ -19,4 +19,12 @@ $(document).ready(function () {
     const amenitiesList = Object.values(selectedAmenities).join(', ');
     $('div.amenities h4').text(amenitiesList || '\xa0'); // Clear text if no amenities selected
   });
+
+  $.get(`http://0.0.0.0:5001/api/v1/status/`, function(data) {
+    if (data.status === 'OK') {
+      $('#api_status').addClass('available');
+    } else {
+      $('#api_status').removeClass('available');
+    }
+  });
 });
