@@ -20,7 +20,7 @@ def close_db(error):
     storage.close()
 
 # Ariel: updated route from hbnb to 0-hbnb
-@app.route('/web_dynamic/0-hbnb', strict_slashes=False)
+@app.route('/0-hbnb', strict_slashes=False)
 def hbnb():
     """ HBNB is alive! """
     states = storage.all(State).values()
