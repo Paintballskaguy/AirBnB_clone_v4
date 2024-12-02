@@ -1,27 +1,22 @@
 $(document).ready(function () {
-  // Check if API is live
-  $.getJSON('http://0.0.0.0:5001/api/v1/status/', function (data) {
-    if (data.status === 'OK') {
-      $('#api_status').addClass('available');
+  // Create an object to store selected amenities
+  const selectedAmenities = {};
+
+  // Listen for changes on input checkboxes inside the amenities popover
+  $('div.amenities input[type="checkbox"]').change(function () {
+    const amenityId = $(this).attr('data-id');   // Get Amenity ID
+    const amenityName = $(this).attr('data-name'); // Get Amenity Name
+
+    if ($(this).is(':checked')) {
+      // Add the amenity to the dictionary if checked
+      selectedAmenities[amenityId] = amenityName;
     } else {
-      $('#api_status').removeClass('available');
+      // Remove the amenity from the dictionary if unchecked
+      delete selectedAmenities[amenityId];
     }
-  });
-  // Ariel: Put the 1-hbnb.js functions here
-  // Needs to be checked:Ariel
-  const amenityDict = {};
-  // if checkbox is checked add to dictionary
-  $("#checkbox").on("input", function() {
-    if ($(this).is(":checked")) {
-      // Ariel: go back and see if this is missing something
-      // needs to store k,v to dict
-      amenityDict[$(this).attr('id')] = $(this).value();
-    // delete amenity if not checked
-    } else {
-        delete amenityDict[$(this).attr('id')];
-    }
-    // will come back to this, adding variable to show dict
-    const amenityList = Object.values(amenityDict).join(', ');
-    console.log(amenityList);
+
+    // Update the h4 tag inside div.amenities with the selected amenities
+    const amenitiesList = Object.values(selectedAmenities).join(', ');
+    $('div.amenities h4').text(amenitiesList || '\xa0'); // Clear text if no amenities selected
   });
 });

@@ -20,29 +20,21 @@ def close_db(error):
     storage.close()
 
 # Ariel: updated route from hbnb to 1-hbnb
-@app.route('/2-hbnb/', strict_slashes=False)
+@app.route('/1-hbnb/', strict_slashes=False)
 def hbnb():
-    """ HBNB is alive! """
-    states = storage.all(State).values()
-    states = sorted(states, key=lambda k: k.name)
-    st_ct = []
-
-    for state in states:
-        st_ct.append([state, sorted(state.cities, key=lambda k: k.name)])
-
-    amenities = storage.all(Amenity).values()
-    amenities = sorted(amenities, key=lambda k: k.name)
-
+    """ Renders the HBNB page with dynamic filtering """
+    states = sorted(storage.all("State").values(), key=lambda state: state.name)
+    amenities = sorted(storage.all("Amenity").values(), key=lambda amenity: amenity.name)
+    places = sorted(storage.all("Place").values(), key=lambda place: place.name)
     cache_id = uuid.uuid4()
-    places = storage.all(Place).values()
-    places = sorted(places, key=lambda k: k.name)
 
-    # Ariel: updated from 100 to 0
-    # will need to add cahe_id as rendere return value
-    return render_template('2-hbnb.html',
-                           states=st_ct,
-                           amenities=amenities,
-                           places=places, cache_id=cache_id)
+    return render_template(
+        '1-hbnb.html',
+        states=states,
+        amenities=amenities,
+        places=places,
+        cache_id=cache_id
+    )
 
 
 if __name__ == "__main__":
