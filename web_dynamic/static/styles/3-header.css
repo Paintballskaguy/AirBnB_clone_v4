@@ -1,31 +1,35 @@
 header {
-    width: 100%;
-    background-color: white;
-    height: 70px;
-    border-bottom: 1px solid #CCCCCC;
-    display: flex;
-    align-items: center;
+  width: 100%;
+  height: 70px; /* Header height */
+  background-color: white;
+  border-bottom: 1px solid #CCCCCC;
+  display: flex; /* Use flexbox for alignment */
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0 20px;
+
 }
 
 .logo {
-    width: 142px;
-    height: 60px;
-    background: url("../images/logo.png") no-repeat center;
-    padding-left: 20px;
+  width: 142px;
+  height: 60px;
+  background: url("../images/logo.png") no-repeat center;
+  background-size: contain;
 }
 
 #api_status {
-    float: right;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #cccccc;
-    margin-right: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  #api_status.available {
-    background-color: #ff545f;
-  }
+  margin-left: auto;
+  position: fixed; /* Place it at the far right of the viewport */
+  top: 15px; /* Align it slightly below the top of the page */
+  right: 30px; /* Offset from the right edge */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Circle shape */
+  background-color: #cccccc; /* Default color */
+  z-index: 1000; /* Ensure it stays above other elements */
+}
+
+#api_status.available {
+  background-color: #ff545f; /* Change to red when available */
+}
