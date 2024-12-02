@@ -1,31 +1,35 @@
 header {
     width: 100%;
+    height: 70px; /* Header height */
     background-color: white;
-    height: 70px;
     border-bottom: 1px solid #CCCCCC;
-    display: flex;
-    align-items: center;
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center vertically */
+    justify-content: space-between; /* Space out elements: logo and search on opposite sides */
+    box-sizing: border-box;
+    padding: 0 20px; /* Padding for inner content */
+
 }
 
 .logo {
     width: 142px;
     height: 60px;
     background: url("../images/logo.png") no-repeat center;
-    padding-left: 20px;
+    background-size: contain;
 }
 
 #api_status {
+    margin-left: auto;
+    position: fixed; /* Place it at the far right of the viewport */
+    top: 15px; /* Align it slightly below the top of the page */
+    right: 30px; /* Offset from the right edge */
     width: 40px;
     height: 40px;
     border-radius: 50%; /* Circle shape */
-    background-color: #cccccc; /* Default background */
-    position: absolute;
-    top: 50%; /* Center vertically */
-    right: 30px;
-    transform: translateY(-50%);
-  }
-  
-  #api_status.available {
-    background-color: #ff545f; /* Status "OK" */
-  }
-  
+    background-color: #cccccc; /* Default color */
+    z-index: 1000; /* Ensure it stays above other elements */
+}
+
+#api_status.available {
+    background-color: #ff545f; /* Change to red when available */
+}
