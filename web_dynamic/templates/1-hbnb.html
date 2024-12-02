@@ -51,7 +51,7 @@ _id }}" />
 	      {% for amenity in amenities %}
           <!-- input will be to left of 'amenity name'-->
 	      <li>{{ amenity.name }}</li>
-          <left><input type="checkbox", value="10px"></left>
+          <left><input type="checkbox", data-id=":amenity_id", data-name=":amenity_name", size="10px"></left>
 	      {% endfor %}
 	    </ul>
 	  </div>
