@@ -4,7 +4,7 @@ $(document).ready(function () {
 
   // Listen for changes on input checkbox tags
   $('input[type="checkbox"]').change(function () {
-    const amenityId = $(this).attr('data-id'); // Get Amenity ID
+    const amenityId = $(this).attr('data-id');   // Get Amenity ID
     const amenityName = $(this).attr('data-name'); // Get Amenity Name
 
     if ($(this).is(':checked')) {
@@ -15,12 +15,8 @@ $(document).ready(function () {
       delete selectedAmenities[amenityId];
     }
 
-    // Format the dictionary for display
-    const amenitiesText = Object.entries(selectedAmenities)
-      .map(([id, name]) => `${name} (${id})`) // Display as Name (ID)
-      .join(', ');
-
-    // Update the h4 tag inside div.amenities with the dictionary content
-    $('.amenities h4').text(amenitiesText || '\xa0'); // Non-breaking space if empty
+    // Update the h4 tag inside div.amenities with the selected amenities
+    const amenitiesList = Object.values(selectedAmenities).join(', ');
+    $('.amenities h4').text(amenitiesList || ''); // Clear text if no amenities selected
   });
 });
