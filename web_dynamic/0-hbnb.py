@@ -38,6 +38,7 @@ def hbnb():
     places = sorted(places, key=lambda k: k.name)
 
     # Ariel: updated from 100 to 0
+    # will need to add cahe_id as rendere return value
     return render_template('0-hbnb.html',
                            states=st_ct,
                            amenities=amenities,
