@@ -32,7 +32,7 @@ $(document).ready(function () {
   // Fetch and display places
   fetchPlaces();
 
-  function fetchPlaces (filters = {}) {
+  function fetchPlaces(filters = {}) {
     // Send POST request to the API
     $.ajax({
       url: 'http://0.0.0.0:5001/api/v1/places_search/',
