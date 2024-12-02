@@ -7,13 +7,13 @@ $(document).ready(function() {
     if ($(this).is(":checked")) {
         // Ariel: go back and see if this is missing something
         // needs to store k,v to dict
-      amenityDict[$(this).attr('id')] = $(this).value();
+      amenityDict[$(this).attr('id')] = $(this).attr('data-name');
     // delete amenity if not checked
     } else {
         delete amenityDict[$(this).attr('id')];
     }
     // will come back to this, adding variable to show dict
     const amenityList = Object.values(amenityDict).join(', ');
-    console.log(amenityList);
+    $('div.filters h4').text('Amenities: ') + amenityDict;
   });
 });
