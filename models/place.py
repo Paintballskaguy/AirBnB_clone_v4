@@ -55,6 +55,17 @@ class Place(BaseModel, Base):
     def __init__(self, *args, **kwargs):
         """initializes Place"""
         super().__init__(*args, **kwargs)
+        
+    def to_dict(self):
+        """Convert Place instance to dictionary."""
+        dictionary = super().to_dict()
+        # Add amenities as a list of IDs
+        if models.storage_t == 'db':
+            dictionary['amenities'] = [amenity.id for amenity in self.amenities]
+        else:
+            dictionary['amenities'] = self.amenity_ids
+        return dictionary
+
 
     if models.storage_t != 'db':
         @property
