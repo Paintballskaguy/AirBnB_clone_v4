@@ -136,11 +136,15 @@ def search_places():
         filtered_places = set()
 
         for place in places:
-            # Ensure amenities relationship is loaded
+            # Ensure amenities are loaded for the place
             place_amenity_ids = {amenity.id for amenity in place.amenities}
+            print(f"Place ID: {place.id}, Amenity IDs: {place_amenity_ids}") #debug
+
+            # Check if the place has all the required amenities
             if amenity_ids.issubset(place_amenity_ids):
                 filtered_places.add(place)
 
+        print(f"Filtered places with amenities: {[p.id for p in filtered_places]}")
         places = filtered_places
 
     return jsonify([place.to_dict() for place in places])
