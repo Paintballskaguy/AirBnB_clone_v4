@@ -139,3 +139,4 @@ __pycache__/
 models/__pycache__/place.cpython-310.pyc
 models/__pycache__/base_model.cpython-310.pyc
 tests/test_models/test_engine/__pycache__/test_db_storage.cpython-310.pyc
+models/__pycache__/place.cpython-310.pyc
