@@ -13,9 +13,15 @@ class Amenity(BaseModel, Base):
     if models.storage_t == 'db':
         __tablename__ = 'amenities'
         name = Column(String(128), nullable=False)
+        places = relationship(
+            "Place",
+            secondary="place_amenity",
+            back_populates="amenities",
+            overlaps="place_amenities"
+        )
     else:
         name = ""
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs): 
         """initializes Amenity"""
         super().__init__(*args, **kwargs)

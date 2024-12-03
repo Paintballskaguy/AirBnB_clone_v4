@@ -4,11 +4,13 @@ This module provides RESTful API actions for Place objects.
 It includes routes to retrieve, create, delete, and update places.
 """
 
+import json
 from flask import jsonify, abort, request
 from api.v1.views import app_views
 from models import storage
 from models.city import City
 from models.place import Place
+from models.state import State
 from models.user import User
 
 
@@ -51,9 +53,7 @@ def create_place(city_id):
     if not request.is_json:
         abort(400, description="Not a JSON")
 
-    data = request.get_json(silent=True)
-    if data is None:
-        abort(400, description="Not a JSON")
+    data = request.get_json()
     if 'user_id' not in data:
         abort(400, description="Missing user_id")
     if 'name' not in data:
@@ -65,7 +65,7 @@ def create_place(city_id):
 
     new_place = Place(
         name=data['name'], city_id=city_id, user_id=data['user_id']
-        )
+    )
     for key, value in data.items():
         if key not in ['id', 'user_id', 'city_id', 'created_at', 'updated_at']:
             setattr(new_place, key, value)
@@ -82,7 +82,7 @@ def update_place(place_id):
     if not place:
         abort(404)
 
-    data = request.get_json(silent=True)
+    data = request.get_json()
     if not data:
         abort(400, description="Not a JSON")
 
@@ -93,54 +93,55 @@ def update_place(place_id):
     storage.save()
     return jsonify(place.to_dict()), 200
 
+
 @app_views.route('/places_search', methods=['POST'], strict_slashes=False)
 def search_places():
-    """
-    Retrieves all Place objects based on JSON filters in the request body.
-    - Filters can include 'states', 'cities', and 'amenities'.
-    """
+    """Searches for places based on JSON filters."""
     if not request.is_json:
         abort(400, description="Not a JSON")
 
-    data = request.get_json(silent=True)
-    if data is None:
+    data = request.get_json()
+    if not isinstance(data, dict):
         abort(400, description="Not a JSON")
 
-    # John:Retrieve all Place objects if no filters are provided
-    if not data or (
-        'states' not in data and 'cities' not in data and 'amenities' not in data
-    ):
+    # Retrieve all places if no filters are provided
+    if not any(data.get(key) for key in ['states', 'cities', 'amenities']):
         all_places = storage.all(Place).values()
         return jsonify([place.to_dict() for place in all_places])
 
     places = set()
 
-    # John: Retrieve places by states
+    # Filter by states
     if 'states' in data and data['states']:
-        state_ids = data['states']
-        for state_id in state_ids:
-            state = storage.get("State", state_id)
+        for state_id in data['states']:
+            state = storage.get(State, state_id)
             if state:
                 for city in state.cities:
                     places.update(city.places)
 
-    # John: Retrieve places by cities
+    # Filter by cities
     if 'cities' in data and data['cities']:
-        city_ids = data['cities']
-        for city_id in city_ids:
-            city = storage.get("City", city_id)
+        for city_id in data['cities']:
+            city = storage.get(City, city_id)
             if city:
                 places.update(city.places)
 
-    # John; Filter by amenities
+    # If no places were found in states or cities, retrieve all places
+    if not places and not ('states' in data or 'cities' in data):
+        places = set(storage.all(Place).values())
+
+    # Filter by amenities
     if 'amenities' in data and data['amenities']:
         amenity_ids = set(data['amenities'])
         filtered_places = set()
+
         for place in places:
+            # Ensure amenities relationship is loaded
             place_amenity_ids = {amenity.id for amenity in place.amenities}
             if amenity_ids.issubset(place_amenity_ids):
                 filtered_places.add(place)
+
         places = filtered_places
 
-    # John; Convert Place objects to dictionaries
     return jsonify([place.to_dict() for place in places])
+
