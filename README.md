@@ -1,12 +1,16 @@
 # AirBnB Clone - The Console
-The console is the first segment of the AirBnB project at Holberton School that will collectively cover fundamental concepts of higher level programming. The goal of AirBnB project is to eventually deploy our server a simple copy of the AirBnB Website(HBnB). A command interpreter is created in this segment to manage objects for the AirBnB(HBnB) website.
+The console is the fourth segment of the AirBnB project at Holberton School that will collectively cover fundamental concepts of higher level programming. The goal of AirBnB project is to eventually deploy our server a simple copy of the AirBnB Website(HBnB). An API and search query are created in this segment to manage objects for the AirBnB(HBnB) website.
 
-#### Functionalities of this command interpreter:
-* Create a new object (ex: a new User or a new Place)
+#### Functionalities of API:
+* Pull data from JQuery and javascript
 * Retrieve an object from a file, a database etc...
-* Do operations on objects (count, compute stats, etc...)
 * Update attributes of an object
 * Destroy an object
+
+#### Functionalities of Search Query:
+* Amenities have checkboxes to the left
+* Amenities that are checked are populated in header
+* Search populates query
 
 ## Table of Content
 * [Environment](#environment)
@@ -22,7 +26,7 @@ The console is the first segment of the AirBnB project at Holberton School that 
 This project is interpreted/tested on Ubuntu 14.04 LTS using python3 (version 3.4.3)
 
 ## Installation
-* Clone this repository: `git clone "https://github.com/alexaorrico/AirBnB_clone.git"`
+* Clone this repository: `git clone "https://github.com/jzamora5/AirBnB_clone_v3.git"`
 * Access AirBnb directory: `cd AirBnB_clone`
 * Run hbnb(interactively): `./console` and enter command
 * Run hbnb(non-interactively): `echo "<command>" | ./console.py`
@@ -38,6 +42,14 @@ List of commands this console current supports:
 * `show` - Prints the string representation of an instance based on the class name and id.
 * `all` - Prints all string representation of all instances based or not on the class name. 
 * `update` - Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file). 
+* `100-hbnb.py` renamed and updated route
+* `100-hbnb.html` renamed and added cache_id to grab data
+* `$(document).ready(function ())` launches DOM (Document Object Model)
+* `input type="checkbox"` creates checkbox for amenity
+* ` $.get(`http://0.0.0.0:5001/api/v1/status/`, function(data)` sends get request for api
+* `const amenitiesList` joins amenities checked
+* `const placeHtml` places html in js after removing jinja in html file
+* `fetchPlaces()` fetches api with post request to API, adds query in json for search
 
 #### `models/` directory contains classes used for this project:
 [base_model.py](/models/base_model.py) - The BaseModel class from which future classes will be derived
@@ -151,7 +163,9 @@ EOF  all  create  destroy  help  quit  show  update
 ```
 
 ## Bugs
-No known bugs at this time. 
+* JQuery would not populate, created searchquery in js file 
+* States were not populating halfway, missing storage for states in models folder
+* API was not online (showing grey not red) due to program calling wrong file
 
 ## Authors
 - Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
