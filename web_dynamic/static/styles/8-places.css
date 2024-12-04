@@ -13,6 +13,7 @@
     padding-top: 20px;
     margin-bottom: 0px;
     flex: 0 1 100%;
+    position: flex;
 }
 .places > article {
     width: 390px;
@@ -73,7 +74,7 @@
     margin-bottom: auto;
 }
 
-.guest_image {
+#guest_image {
     margin-left: auto;
     margin-right: auto;
     height: 50px;
@@ -81,7 +82,7 @@
     background: url("../images/icon_group.png") no-repeat center;
 }
 
-.bed_image {
+#bed_image {
     margin-left: auto;
     margin-right: auto;
     height: 50px;
@@ -89,7 +90,7 @@
     background: url("../images/icon_bed.png") no-repeat center;
 }
 
-.bath_image {
+#bath_image {
     margin-left: auto;
     margin-right: auto;
     height: 50px;
