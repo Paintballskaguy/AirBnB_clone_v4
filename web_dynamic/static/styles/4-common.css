@@ -3,6 +3,8 @@ body {
     padding: 0;
     color: #484848;
     font-size: 14px;
+    position: flex wrap;
+    justify-content: space-between;
     font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 

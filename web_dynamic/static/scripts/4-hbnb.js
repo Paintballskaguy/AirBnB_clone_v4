@@ -72,9 +72,15 @@ $(document).ready(function () {
                 <div class="price_by_night">$${place.price_by_night}</div>
               </div>
               <div class="information">
-                <div class="max_guest">${place.max_guest} Guest${place.max_guest !== 1 ? 's' : ''}</div>
-                <div class="number_rooms">${place.number_rooms} Bedroom${place.number_rooms !== 1 ? 's' : ''}</div>
-                <div class="number_bathrooms">${place.number_bathrooms} Bathroom${place.number_bathrooms !== 1 ? 's' : ''}</div>
+                <div class="max_guest">
+                <img src="../static/images/icon_group.png" alt="Guests" />
+                ${place.max_guest} Guest${place.max_guest !== 1 ? 's' : ''}</div>
+                <div class="number_rooms">
+                <img src="../static/images/icon_bed.png" alt="Rooms" />
+                ${place.number_rooms} Bedroom${place.number_rooms !== 1 ? 's' : ''}</div>
+                <div class="number_bathrooms">
+                <img src="../static/images/icon_bath.png" alt="Bathrooms" />
+                ${place.number_bathrooms} Bathroom${place.number_bathrooms !== 1 ? 's' : ''}</div>
               </div>
               <div class="description">
                 ${place.description}
